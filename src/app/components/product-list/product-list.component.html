@@ -1,0 +1,35 @@
+
+  <div class="mb-10 space-y-6 md:space-y-0 cursor-pointer relative grid md:grid-cols-3 md:gap-3" *ngIf="products.length > 0; else loading">
+    <div *ngFor="let product of products">
+    <div class="relative mb-14 "> 
+    <div class="h-[350px] sm:h-[250px] overflow-hidden rounded-xl"
+         >
+      <img 
+        [src]="product.image" 
+        [alt]="product.title" 
+        class="w-full h-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
+      >
+    </div>
+
+
+        <button
+        (click)="addToCart(product)"
+        class="flex justify-center items-center gap-2 md:gap-3 bg-white font-bold text-sm sm:text-xl border-2 border-[#74A7A9] hover:border-red group rounded-full py-3 px-8 sm:px-4 absolute bottom-[-24px] left-1/2 transform -translate-x-1/2 whitespace-nowrap min-w-[150px]">
+        <img src="/assets/images/icon-add-to-cart.svg" alt="add to cart icon" class="w-4 h-4 md:w-6 md:h-6">
+        <p class="text-[#74A7A9] group-hover:text-red font-semibold sm:text-sm">Add to cart</p>
+        </button>
+    </div>
+  
+    <div class="space-y-4">
+      <p class="text-md">{{ product.title}}</p>
+      <h3 class="font-semibold text-md  break-words">{{ product.category }}</h3>
+      <p class="text-[#74A7A9] font-semibold text-xl sm:text-lg">${{ product.price.toFixed(2) }}</p>
+    </div>
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p class="text-center text-gray-600">Loading products...</p>
+  </ng-template>
+  
+

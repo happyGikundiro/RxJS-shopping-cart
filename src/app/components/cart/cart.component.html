@@ -1,0 +1,27 @@
+<div *ngIf="(cart$ | async) as cartItems" class=" p-4 bg-white rounded-lg shadow-lg w-full xl:mt-16">
+    <div *ngIf="cartItems.length > 0; else emptyCart">
+        <p class=" my-5 text-[#74A7A9] text-xl">Total Items: <span class="font-bold">{{ totalItems$ | async }}</span></p>
+      <ul class="space-y-4 mb-6">
+        <li *ngFor="let item of cartItems" class=" p-4 bg-gray-100 rounded-lg shadow-sm">
+          <h4 class="text-lg font-semibold text-gray-700">{{ item.title }}</h4>
+          <div class="flex justify-between items-center">
+            
+            <span class="text-[#74A7A9] text-sm">${{ item.price }}</span>
+            <button (click)="removeFromCart(item.id)" >
+                <img src="/assets/images/delete-icon.svg" alt="add to cart icon" class="w-4 h-4 md:w-6 md:h-6">
+            </button>
+          </div>
+        </li>
+      </ul>
+
+      <button (click)="clearCart()" 
+              class="w-full bg-[#74A7A9] text-white py-2 px-4 rounded-lg shadow-md hover:bg-[#5b898b] transition-colors duration-300">
+        Clear Cart
+      </button>
+    </div>
+    <ng-template #emptyCart>
+      <p class="text-center text-gray-500">Your cart is empty</p>
+    </ng-template>
+    
+  </div>
+  
